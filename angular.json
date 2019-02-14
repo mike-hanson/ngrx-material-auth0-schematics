@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "ngrx-material-auth0-schematics"
+  "defaultProject": "ngrx-material-auth0-schematics",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

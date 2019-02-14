@@ -1,5 +1,5 @@
 # ngrx-material-auth0-schematics
-This project provides a starter kit for Angular applications that use Angular Material for look and feel, NgRx for state management and Auth0 for authentication and authorization.  Whilst there are other notable starter projects for this set of technologies the key difference is that this project was built exclusively using Schematics.
+This project provides a starter kit for Angular applications that use Angular Material for look and feel, NgRx for state management and Auth0 for authentication and authorization.  Whilst there are other notable starter projects for this set of technologies the key difference is that this project was built exclusively using Schematics.  Not just using Schematics but using them with defaults since we beleive these represent what the relevant teams see as best practice.
 
 ## What are schematics?
 When Angular CLI was introduced it had a fixed set of commands that were supported.  It wasn't very extensible but it was the best way to create a new project and generate elements.  To make the CLI more extensible (for themselves as well as package authers) the Angular team introduced an extension point through Schematics.  They converted commands like **generate** to use schematics, so this my give you a clue what a schematic is.  It is a way to extend Angular CLI capabilities for transforming an Angular application or project.  In short a Schematic describes a set of changes that Angular CLI should validate and apply.
@@ -58,4 +58,72 @@ Before we go on to implementing NgRx we created the components for a basic user 
 
   ng generate component core/page-not-found -m core.module
 ```
+
+### 5. Install NgRx Packages
+Initially we though of just installing all the NgRx packages via **npm** and using the @ngrx/schematics to do all the setup and configuration.  As we investigated this we found that there is nothing in the schematics package for setting up @ngrx/router-store so we opted to use **ng add* for the three main NgRx packages then use @ngrx/schematics from then on.  So we started with:
+```bash
+  ng add @ngrx/store
+
+  ng add @ngrx/effects
+
+  ng add @ngrx/router-store
+```
+These commands did all the grunt work to install the packages, create our root reducer and update our AppModule with relevant imports.  However it also added an initial Effects file to the root of our project.  We don't want this as all of our functionality is going to be in feature modules so we removed *app.effects.ts* and *app.effects.spec.ts* files and fixed up app.module.ts to remove references to these files and their contents.  From here on in we are going to use the @ngrx/schematics collection to manage our NgRx components so we need to install that package.
+
+At the time of writing @ngrx/schematics cannot be installed using **ng add** as it does not include an *ng-add* schematic.  The team have an open ticket to add this support, but until that is ready we have to install the package using **npm**
+```bash
+  npm install @ngrx/schematics --save-dev
+```
+
+At this point we thought we were ready to go with our NgRx installation and tried to run one of the schematics.  We got an error *Could not find module @angular-devkit/schematics*.  We googled the error but didn't find anything specific, but in the end it lead us to installing three additional packages to resolve the issue
+
+```bash
+  npm install @angular-devkit/schematics @angular-devkit/core @angular-devkit/architect --save-dev
+```
+
+### 6. Configuring @ngrx/schematics as Default Collection
+@ngrx/schematics includes aliases for the schematics we use every day with **ng generate** so it made sense to configure it as our default collection so we didn't have to keep specifying the package.  Instead of doing this
+```bash
+  ng generate @ngrx/schematics:<element> <name> [options]
+```
+We want to be able to do this
+```bash
+  ng generate <element> <name> [options]
+```
+
+And still be able to use the original features e.g. ng generate component ... To configure this we ran
+```bash
+  ng config cli.defaultCollection @ngrx/schematics
+```
+
+This updates angular.json so we can do as mentioned.  However there is one final configuration change we needed to make, because we specified SCSS as our styling language.  This choice is saved in angular.json, but we need to modify the setting so that it is applied when we generate components using our new default collection.  In angular.json you will find a section like this
+
+```javascript
+
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngrx-material-auth0-schematics": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": { // we need to change this
+          "style": "sass"
+        }
+      },
+  ...
+}
+```
+
+We need to modify the line with the comment added to read
+
+```javascript
+  "@mgrx/schematics:component": {
+```
+
+Now we are ready to start adding Authentication with Auth0 via NgRx to our project
 
