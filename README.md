@@ -24,3 +24,26 @@ For anything but the simplest of applications the Angular style guide recommends
 ```
 
 Notice we didn't include routing for our shared module and didn't specify the -m switch to have it automatically imported in any module, unlike the Core module the contents of the Shared module will be selectively included in other modules.  There appears to be some debate as to what should be in the Core module, some argue it should only be services and models and don't include any visual components.  We chose the approach of putting anything that would be seen as a root level component visual or otherwise as well as services that provide cross cutting concerns.  Out primary use of Core is to keep the root application folder clean, so we include nav components and visual components that are referenced in app.component.html.
+
+### 3. Add Angular Material
+Next step is to add Angular Material to our project.  This can be done manually using npm or yarn and some manual steps, but the @angular/material package includes a schematic that supports **ng add**, which not only installs the package and it's dependdencies but also configures the project with a theme and some imports in app.module so we used the following command
+```bash
+  ng add @angular/material
+```
+
+We were prompted for some options and responded with the following
+1. Theme - Custom
+1. Install Hammerjs - Y
+1. Install BrowserAnimations - Y
+
+Selecting Custom for theme added the code to styles.scss to build a custom theme with the values that are in the indigo-pink builtin theme.  We modified the code slightl to use deep-orange for our Accent pallette.
+
+One convention we have seen and adopted is to create a separate module for Angular Material.  What we have done so far leaves us ready to use Angular Material, but we have found in the past that we end up having imports for various Mat--Modules and often the same ones in many places.  For a while we took to importing these Mat*Modules into the Shared module, but found ourselves importing the Shared module just to get the Material imports so we decided to go with a separate module.  So we added that with the following command.
+```bash
+  ng generate module material --routing false -m core/core.module
+```
+
+Notice we specified the new module should be imported into our core module.  We knew that we were going to create a toolbar component very soon that would use Angular Material modules so it seemed sensible to get the wiring up done for us early.
+
+We knew that throughout our application we would need the Button and Icon modules from Angular Material so we added support for these and the Toolbar module to our new module straight away.  Now we just need to import the MaterialModule into any module that wants to use Angular Material components.  We felt the tradeoff that other modules would be importing Angular Material components they didn't need vs only dealing with Angular Material in once place worthwhile.
+
