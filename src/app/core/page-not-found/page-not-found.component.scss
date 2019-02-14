@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-card {
+    width: 275px;
+    margin-top: 20px;
+  }
+}

@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatCardModule
+} from '@angular/material';
 
 export const COMPONENTS = [
   MatToolbarModule,
   MatButtonModule,
-  MatIconModule];
+  MatIconModule,
+  MatCardModule];
 
 @NgModule({
   imports: COMPONENTS,

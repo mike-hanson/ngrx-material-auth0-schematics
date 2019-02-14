@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  appTitle: 'NgRx, Angular Material, Auth0 using Schematics'
 };

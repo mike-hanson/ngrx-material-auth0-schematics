@@ -47,3 +47,15 @@ Notice we specified the new module should be imported into our core module.  We 
 
 We knew that throughout our application we would need the Button and Icon modules from Angular Material so we added support for these and the Toolbar module to our new module straight away.  Now we just need to import the MaterialModule into any module that wants to use Angular Material components.  We felt the tradeoff that other modules would be importing Angular Material components they didn't need vs only dealing with Angular Material in once place worthwhile.
 
+### 4. Add Basic UI
+Before we go on to implementing NgRx we created the components for a basic user interface that provided Page Not Found, Home and About components along with a toolbar to support navigation between them.  We included Sign In and Sign Out buttons ready for later.  We executed the following commands to get this all setup and and then edited markup and routing to wire them all together.  Initially both the Sign In and Sign Out buttons are visible, but we will fix this later.
+```bash
+  ng generate component core/toolbar -m core.module
+
+  ng generate component core/home -m core.module
+
+  ng generate component core/about -m core.module
+
+  ng generate component core/page-not-found -m core.module
+```
+
