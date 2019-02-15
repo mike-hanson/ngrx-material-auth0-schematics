@@ -6,8 +6,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { AppComponent } from './app.component';
 import { reducers, metaReducers } from './reducers';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { reducers, metaReducers } from './reducers';
     CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

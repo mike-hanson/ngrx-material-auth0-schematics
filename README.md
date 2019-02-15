@@ -127,3 +127,44 @@ We need to modify the line with the comment added to read
 
 Now we are ready to start adding Authentication with Auth0 via NgRx to our project
 
+### 7. Adding an auth module and service
+Under normal circumstances we would probably put all of our Authentication elements into the *core* module, but we thought on this occasion it would be better in a separate feature module so that it is isolated and easy to find and understand.  So we created a new module like this
+```bash
+  ng generate module auth -m app.module
+```
+
+Then we created an *AuthService* like this
+```bash
+  ng generate service auth/services/auth
+```
+
+The auth service depends on Auth0 so we need to install the package
+```bash
+  npm install auth0-js --save
+```
+We will leave you to scan the code and tests for the auth service to understand what how it uses auth0, but we feel we should mention one thing we did.  We wanted to be able to test the interaction between our app and Auth0, but if we followed the many examples out there this would not be possible because they all instantiate auth0.WebAuth inside their service implementation.  We wanted to inject an instance of auth0.WebAuth as a service, which is essentially what it is so we created created an InjectionToken with a factory to create auth0.WebAuth.  We put it in auth.service.ts so it was clear when looking at the service what was going on, arguably the injection token should be in the module, but we preferred the clarity.
+```javascript
+export const Auth0WebAuthService = new InjectionToken<auth0.WebAuth>('Auth0WebAuthService', {
+  providedIn: 'root',
+  factory: () =>
+    new auth0.WebAuth({
+      clientID: environment.auth0.clientId,
+      domain: environment.auth0.domain,
+      redirectUri: environment.auth0.callbackUrl,
+      responseType: 'token id_token',
+      scope: 'openid profile email'
+    })
+});
+```
+With this in place we could now inject Auth0WebAuthService into our AuthService via the @Inject decorator and provide a mock for it in our tests.  Check them out.
+
+You may have noticed we are referencing properties of an auth0 object attached to our current environment object.  You will need to update some of these property values with your own Auth0 tenant values as mentioned in the Getting Started section above.
+
+The callback urls in our configurations point to *signin* and *signout* endpoints.  This means we need routes to match, which means we need components for them so we created them using
+```bash
+  ng generate component auth/sign-in -m auth.module
+
+  ng generate component auth/sign-out -m auth.module
+```
+And updated the auth routing module with routes for these.  Having what amount to visual components in this scenario felt a bit ugly but it is the simplest and only way to provide an end point that simply dispatches an action.  It would be nice if it was possible to define a function to handle a route, but at least a component is testable.
+

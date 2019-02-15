@@ -4,6 +4,12 @@
 
 export const environment = {
   production: false,
+  auth0: {
+    domain: '[your-dev-tenant-domain-goes-here]',
+    clientId: '[your-dev-clientid-goes-here]',
+    callbackUrl: 'https://localhost:4200/signin',
+    logoutUrl: 'https://localhost:4200/signout'
+  },
   appTitle: 'NgRx, Angular Material, Auth0 using Schematics - Dev'
 };
 
