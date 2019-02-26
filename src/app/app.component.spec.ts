@@ -2,11 +2,15 @@ import { OnInit, DebugElement } from '@angular/core';
 import { Title, By } from '@angular/platform-browser';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
 import { MaterialModule } from './material/material.module';
 import { CoreModule } from './core/core.module';
+import { AuthButtonsComponent } from './auth/auth-buttons/auth-buttons.component';
+import { AuthModule } from './auth/auth.module';
+import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -19,7 +23,10 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         MaterialModule,
-        CoreModule
+        CoreModule,
+        AuthModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([])
       ],
       declarations: [
         AppComponent
@@ -35,7 +42,7 @@ describe('AppComponent', () => {
     titleService = TestBed.get(Title);
   }));
 
-  it('should compile', () => {
+  it('Should compile', () => {
     expect(app).toBeTruthy();
   });
 

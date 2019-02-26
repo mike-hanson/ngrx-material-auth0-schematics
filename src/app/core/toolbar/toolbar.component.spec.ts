@@ -1,8 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { MaterialModule } from '../../material/material.module';
+import { AuthModule } from '../../auth/auth.module';
 import { ToolbarComponent } from './toolbar.component';
 import { environment } from '../../../environments/environment';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -11,7 +15,12 @@ describe('ToolbarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ToolbarComponent],
-      imports: [MaterialModule]
+      imports: [
+        RouterTestingModule,
+        MaterialModule,
+        AuthModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([])]
     })
       .compileComponents();
   }));
@@ -22,21 +31,11 @@ describe('ToolbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should compile', () => {
+  it('Should compile', () => {
     expect(component).toBeTruthy();
   });
 
   it('should provide title as property', () => {
     expect(component.appTitle).toEqual(environment.appTitle);
-  });
-
-  it('Should implement a method to signIn', () => {
-    expect(typeof component.signIn).toBe('function', 'Method was not defined');
-    expect(component.signIn.length).toBe(0, 'Method does not define correct number of parameters');
-  });
-
-  it('Should implement a method to signOut', () => {
-    expect(typeof component.signOut).toBe('function', 'Method was not defined');
-    expect(component.signOut.length).toBe(0, 'Method does not define correct number of parameters');
   });
 });

@@ -4,7 +4,8 @@ export const environment = {
     domain: '[your-production-tenant-domain-goes-here]]',
     clientId: '[your-production-clientid-goes-here]',
     callbackUrl: 'https://[your-production-domain-goes-here]/signin',
-    logoutUrl: 'https://[your-production-domain-goes-here]/signout'
+    logoutUrl: 'https://[your-production-domain-goes-here]/signout',
+    renewTokensInterval: 240 // minutes
   },
-  appTitle: 'NgRx, Angular Material, Auth0 using Schematics'
+  appTitle: 'NgRx, Material and Auth0 using Schematics'
 };

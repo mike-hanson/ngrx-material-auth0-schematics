@@ -10,8 +10,4 @@ export class ToolbarComponent {
   public get appTitle() {
     return environment.appTitle;
   }
-
-  public signIn(): void { }
-
-  public signOut(): void { }
 }

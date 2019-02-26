@@ -3,14 +3,18 @@ import {
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 export const COMPONENTS = [
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
-  MatCardModule];
+  MatCardModule,
+  MatDialogModule,
+  MatSnackBarModule];
 
 @NgModule({
   imports: COMPONENTS,

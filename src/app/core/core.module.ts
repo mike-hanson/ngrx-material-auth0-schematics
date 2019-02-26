@@ -7,6 +7,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { AuthModule } from '../auth/auth.module';
 
 export const COMPONENTS = [
   ToolbarComponent,
@@ -20,6 +21,7 @@ export const COMPONENTS = [
     CommonModule,
     MaterialModule,
     CoreRoutingModule,
+    AuthModule
   ],
   exports: COMPONENTS
 })

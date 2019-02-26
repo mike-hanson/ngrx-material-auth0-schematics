@@ -1,15 +1,10 @@
 <mat-toolbar color='primary'>
   <a mat-button routerLink='/home' title='Go to home page'>
-    <mat-icon>home</mat-icon>
+    <mat-icon color='accent' class='icon-lg'>home</mat-icon>
     <span class='app-title'>{{appTitle}}</span>
   </a>
-  <a aria-label='home' mat-button routerLinkActive='active' routerLink='/home' title='Home page'>Home</a>
-  <a aria-label='about' mat-button routerLinkActive='active' routerLink='/about' title='About page'>About</a>
+  <a aria-label='home' mat-button routerLinkActive='active-accent' routerLink='/home' title='Home page'>Home</a>
+  <a aria-label='about' mat-button routerLinkActive='active-accent' routerLink='/about' title='About page'>About</a>
   <span class='toolbar-fill'></span>
-  <a mat-button (click)='signIn()'>
-    <mat-icon>exit_to_app</mat-icon>
-  </a>
-  <a mat-button (click)='signOut()'>
-    <mat-icon>power_settings_new</mat-icon>
-  </a>
+  <app-auth-buttons></app-auth-buttons>
 </mat-toolbar>

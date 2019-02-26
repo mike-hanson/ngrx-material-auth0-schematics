@@ -1,16 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
 
 import { SignInComponent } from './sign-in.component';
+import { SignInCompleteAction } from '../auth.actions';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
+  const storeMock = jasmine.createSpyObj(['dispatch']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
+      declarations: [SignInComponent],
+      providers: [{ provide: Store, useValue: storeMock }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,13 @@ describe('SignInComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should compile', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should use store to dispatch SignInComplete action', () => {
+    component.ngOnInit();
+
+    expect(storeMock.dispatch).toHaveBeenCalledWith(jasmine.any(SignInCompleteAction));
   });
 });

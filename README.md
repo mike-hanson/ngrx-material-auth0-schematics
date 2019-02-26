@@ -6,6 +6,12 @@ When Angular CLI was introduced it had a fixed set of commands that were support
 
 More and more Angular libraries come with schematics.  @angular/cdk and @angular/material install schematics when the package is installed.   NgRx packages like @ngrx/store and @ngrx/effects include an ng-add schematic that allows them to be installed using **ng add**, but they also provide a separate package called @ngrx/schematics that supports generating new NgRx elements.
 
+## Getting Started
+
+## Issues
+
+We welcome any feedback or constructive criticism, simply post an an issue on GitHub.
+
 ## Building the project
 In this section we describe the sequence of high level steps that were taken to build and configure this starter project. This won't be a deep dive into the code but it will help you understand where schematics fit in and any changes made (if any) following those made during schematic execution.  After each step we committed the changes to the GIT repo so you can see them reflected in the history, including changes to this file, which we updated as we went along.
 
@@ -142,7 +148,7 @@ The auth service depends on Auth0 so we need to install the package
 ```bash
   npm install auth0-js --save
 ```
-We will leave you to scan the code and tests for the auth service to understand what how it uses auth0, but we feel we should mention one thing we did.  We wanted to be able to test the interaction between our app and Auth0, but if we followed the many examples out there this would not be possible because they all instantiate auth0.WebAuth inside their service implementation.  We wanted to inject an instance of auth0.WebAuth as a service, which is essentially what it is so we created created an InjectionToken with a factory to create auth0.WebAuth.  We put it in auth.service.ts so it was clear when looking at the service what was going on, arguably the injection token should be in the module, but we preferred the clarity.
+We will leave you to scan the code and tests for the auth service to understand how it uses auth0, but we feel we should mention one thing we did.  We wanted to be able to test the interaction between our app and Auth0, but if we followed the many examples out there this would not be possible because they all instantiate auth0.WebAuth inside their service implementation.  We wanted to inject an instance of auth0.WebAuth as a service, which is essentially what it is so we created an InjectionToken with a factory to create auth0.WebAuth.  We put it in auth.service.ts so it was clear when looking at the service what was going on, arguably the injection token should be in the module, but we preferred the clarity.
 ```javascript
 export const Auth0WebAuthService = new InjectionToken<auth0.WebAuth>('Auth0WebAuthService', {
   providedIn: 'root',
@@ -167,4 +173,18 @@ The callback urls in our configurations point to *signin* and *signout* endpoint
   ng generate component auth/sign-out -m auth.module
 ```
 And updated the auth routing module with routes for these.  Having what amount to visual components in this scenario felt a bit ugly but it is the simplest and only way to provide an end point that simply dispatches an action.  It would be nice if it was possible to define a function to handle a route, but at least a component is testable.
+
+To keep all of our auth related elements isolated we created a component for the buttons that will initiate sign in and sign out
+```bash
+  ng generate component auth/auth-buttons -m auth.module
+```
+And exported it so making it available to use in our toolbar
+
+Next we added the NgRx components using the feature schematic
+```bash
+  ng generate feature auth/auth -m auth/auth.module.ts
+```
+Now we were in the position to deinfe actions, reducer and effects to handle the sign in, sign out and token refresh workflows.
+
+We will leave you to scan the code to understand these and to get on with adding your own functionality.
 

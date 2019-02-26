@@ -1,0 +1,8 @@
+<a mat-button (click)='signIn()' *ngIf='(isAuthenticated$ | async) == false'>
+  <mat-icon color='accent' class='icon-lg'>account_circle</mat-icon>
+</a>
+<span>{{userFullName$ | async}}</span>
+<a mat-button (click)='signOut()' *ngIf='isAuthenticated$ | async'>
+  <mat-icon color='warn' class="icon-lg" *ngIf='(userPicture$ | async) == undefined'>account_circle</mat-icon>
+  <img [src]='userPicture$ | async' alt="Use picture" class='round-image icon-lg'  *ngIf='(userPicture$ | async)'/>
+</a>
