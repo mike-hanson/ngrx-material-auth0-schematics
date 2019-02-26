@@ -7,10 +7,28 @@ When Angular CLI was introduced it had a fixed set of commands that were support
 More and more Angular libraries come with schematics.  @angular/cdk and @angular/material install schematics when the package is installed.   NgRx packages like @ngrx/store and @ngrx/effects include an ng-add schematic that allows them to be installed using **ng add**, but they also provide a separate package called @ngrx/schematics that supports generating new NgRx elements.
 
 ## Getting Started
+Before you can run the application you will need to do the following:
+
+1. Sign Up/Sign In to an Auth0 account.
+1. Create at least one tenancy for you project. We recommend creating two, one for dev and one for production. If you are not familiar with Auth0 we recommend reading the basics in their [Getting Started](https://auth0.com/docs/getting-started) guide
+1. Create an Application within each of tenants.
+1. Update environment.ts and environment.prod.ts with settings for your Auth0 tenants and applications.
+
+By default a new Auth0 application has a connection to Google enabled.  However it uses a set of Development Keys provided by Auth0.  While you are using these keys Silent Authentication and Token Refresh will always fail and return an error 'Login required'.  To enable all functionality of this project we recommend creating at least one connection to a 'real' provider.  This requires you to go to the developer portal for the provider to create an application, then enter the Cliend ID and Client Secret into the appropriate connection settings in the Auth0 application.
+
+We assume that as your are developing what must be at least a semi complex application that requires authentication and authorization that you can figure out what you need to do from the information provided.  However if you need more help let us know by posting an issue and we will respond with some pointers.
+
+Now you should be ready to go, run the following in a terminal focused on the project folder.
+```bash
+  npm install,
+  npm start
+```
 
 ## Issues
 
-We welcome any feedback or constructive criticism, simply post an an issue on GitHub.
+We welcome any feedback or constructive criticism, simply post an issue on [GitHub](https://github.com/testpossessed/ngrx-material-auth-schematics/issues) and we will respond as soon as possible.  We are using this starter on our own projects so as we do we will no doubt find ways to enhance the project.
+
+If you identify an issue and have a solution feel free to submit a pull request.
 
 ## Building the project
 In this section we describe the sequence of high level steps that were taken to build and configure this starter project. This won't be a deep dive into the code but it will help you understand where schematics fit in and any changes made (if any) following those made during schematic execution.  After each step we committed the changes to the GIT repo so you can see them reflected in the history, including changes to this file, which we updated as we went along.
