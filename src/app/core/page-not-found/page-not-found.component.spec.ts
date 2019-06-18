@@ -21,7 +21,7 @@ describe('PageNotFoundComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Should compile', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

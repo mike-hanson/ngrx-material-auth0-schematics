@@ -1,0 +1,11 @@
+<app-toolbar (menuToggled)='handleSideNavToggled($event)'></app-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [mode]='sideNavMode$ | async' [opened]='showSideNav$ | async'
+    [fixedInViewport]='isFixedInViewport$ | async' fixedToGap='56' role='navigation'
+    [style.marginTop.px]="(isFixedInViewport$ | async) ? 56 : 0">
+    <app-side-nav></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content role='main'>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

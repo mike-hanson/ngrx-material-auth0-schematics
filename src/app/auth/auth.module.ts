@@ -10,11 +10,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './auth.effects';
+import { AuthEffects } from './state/auth.effects';
 import { SignInFailureDialogComponent } from './sign-in-failure-dialog/sign-in-failure-dialog.component';
 import { RenewTokensFailureDialogComponent } from './renew-tokens-failure-dialog/renew-tokens-failure-dialog.component';
-import { reducer, State } from './auth.reducer';
-import { RenewTokensAction, SilentSignInAction } from './auth.actions';
+import { reducer, State } from './state/auth.reducer';
+import { RenewTokensAction, SilentSignInAction } from './state/auth.actions';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const COMPONENTS = [

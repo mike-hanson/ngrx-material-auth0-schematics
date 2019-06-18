@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 
 import { SignOutComponent } from './sign-out.component';
-import { SignOutCompleteAction } from '../auth.actions';
+import { SignOutCompleteAction } from '../state/auth.actions';
 
 describe('SignOutComponent', () => {
   let component: SignOutComponent;
@@ -23,7 +23,7 @@ describe('SignOutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Should compile', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 

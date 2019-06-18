@@ -4,7 +4,7 @@ import {
 } from '@ngrx/store';
 import { Auth0DecodedHash } from 'auth0-js';
 
-import { Auth0WebAuthService } from './services/auth.service';
+import { Auth0WebAuthService } from '../services/auth.service';
 import {
   AuthActions,
   AuthActionTypes,
@@ -45,7 +45,7 @@ export function reducer(state = initialState, action: AuthActions): State {
       isAuthenticated: true,
       accessToken: payload.accessToken,
       idToken: payload.idToken,
-      expiresAt: new Date((new Date()).getTime() + (payload.expiresIn * 1000)),
+      expiresAt: new Date((new Date()).getTime() + (payload.expiresIn * 60000)),
       userId: payload.idTokenPayload.aud,
       email: payload.idTokenPayload.email,
       givenName: payload.idTokenPayload.given_name,
@@ -78,13 +78,5 @@ export function reducer(state = initialState, action: AuthActions): State {
       return state;
   }
 }
-
-export const getAuthFeature = createFeatureSelector<State>('auth');
-
-export const getIsAuthenticated = createSelector(getAuthFeature, (s: State) => s.isAuthenticated);
-
-export const getFullName = createSelector(getAuthFeature, (s: State) => s.givenName + ' ' + s.familyName);
-
-export const getPicture = createSelector(getAuthFeature, (s: State) => s.pictureUrl);
 
 

@@ -8,7 +8,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import {
   SignInAction,
   SignInCompleteAction,
@@ -23,11 +23,11 @@ import {
   SilentSignInSuccessAction
 } from './auth.actions';
 import { AuthEffects } from './auth.effects';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { State } from './auth.reducer';
-import { SignInFailureDialogComponent } from './sign-in-failure-dialog/sign-in-failure-dialog.component';
-import { RenewTokensFailureDialogComponent } from './renew-tokens-failure-dialog/renew-tokens-failure-dialog.component';
-import { environment } from '../../environments/environment';
+import { SignInFailureDialogComponent } from '../sign-in-failure-dialog/sign-in-failure-dialog.component';
+import { RenewTokensFailureDialogComponent } from '../renew-tokens-failure-dialog/renew-tokens-failure-dialog.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   template: '<div></div>'
@@ -69,11 +69,11 @@ describe('AuthEffects', () => {
     snackBar = TestBed.get(MatSnackBar);
   });
 
-  it('Should be defined', () => {
+  it('should be defined', () => {
     expect(effects).toBeDefined();
   });
 
-  it('Should use AuthService on sign in', () => {
+  it('should use AuthService on sign in', () => {
     const action = new SignInAction();
     spyOn(authService, 'signIn');
 
@@ -84,7 +84,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should return success action when parsing valid hash from authentication', () => {
+  it('should return success action when parsing valid hash from authentication', () => {
     const action = new SignInCompleteAction();
     const authResult = { accessToken: 'abc', idToken: 'def' };
     const completion = new SignInSuccessAction(authResult);
@@ -101,7 +101,7 @@ describe('AuthEffects', () => {
 
   });
 
-  it('Should return failure action when parsing hash from authentication throws error', () => {
+  it('should return failure action when parsing hash from authentication throws error', () => {
     const error = { error: '', description: '', errorDescription: '' };
     const action = new SignInCompleteAction();
     const authResult = { accessToken: 'abc', idToken: 'def' };
@@ -119,7 +119,7 @@ describe('AuthEffects', () => {
 
   });
 
-  it('Should schedule token refresh when parsing valid hash from authentication', () => {
+  it('should schedule token refresh when parsing valid hash from authentication', () => {
     const action = new SignInCompleteAction();
     const authResult = { accessToken: 'abc', idToken: 'def', expiresIn: 7200 };
     const completion = new SignInSuccessAction(authResult);
@@ -136,7 +136,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should dispatch action when scheduled timeout complete', fakeAsync(() => {
+  it('should dispatch action when scheduled timeout complete', fakeAsync(() => {
     const action = new SignInCompleteAction();
     const authResult = { accessToken: 'abc', idToken: 'def', expiresIn: 6 };
     const completion = new SignInSuccessAction(authResult);
@@ -155,7 +155,7 @@ describe('AuthEffects', () => {
     });
   }));
 
-  it('Should return success action when parsing valid hash from token renewal', () => {
+  it('should return success action when parsing valid hash from token renewal', () => {
     const action = new RenewTokensAction();
     const authResult = { accessToken: 'abc', idToken: 'def' };
     const completion = new RenewTokensSuccessAction(authResult);
@@ -171,7 +171,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should return failure action when parsing hash from token renewal throws error', () => {
+  it('should return failure action when parsing hash from token renewal throws error', () => {
     const error = { error: '', description: '', errorDescription: '' };
     const action = new RenewTokensAction();
     const authResult = { accessToken: 'abc', idToken: 'def' };
@@ -189,7 +189,7 @@ describe('AuthEffects', () => {
 
   });
 
-  it('Should use Router to navigate to Home on sign in success', () => {
+  it('should use Router to navigate to Home on sign in success', () => {
     spyOn(router, 'navigate');
     const action = new SignInSuccessAction({});
 
@@ -200,7 +200,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should use auth service on sign out', () => {
+  it('should use auth service on sign out', () => {
     const action = new SignOutAction();
     spyOn(authService, 'signOut');
 
@@ -211,7 +211,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should use router to navigate to home on sign out complete', () => {
+  it('should use router to navigate to home on sign out complete', () => {
     const action = new SignOutCompleteAction();
     spyOn(router, 'navigate');
 
@@ -222,7 +222,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should show snack bar message on sign out complete', fakeAsync(() => {
+  it('should show snack bar message on sign out complete', fakeAsync(() => {
     const action = new SignOutCompleteAction();
     spyOn(snackBar, 'open');
 
@@ -234,7 +234,7 @@ describe('AuthEffects', () => {
     });
   }));
 
-  it('Should show error dialog on sign in failure', () => {
+  it('should show error dialog on sign in failure', () => {
     const error = { error: '', description: '', errorDescription: 'some error' };
     const action = new SignInFailureAction(error);
     spyOn(dialog, 'open');
@@ -250,7 +250,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should show error dialog on renew tokens failure', () => {
+  it('should show error dialog on renew tokens failure', () => {
     const action = new RenewTokensFailureAction();
     spyOn(dialog, 'open');
 
@@ -264,7 +264,7 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('Should return success action when parsing valid hash from silent authentication', () => {
+  it('should return success action when parsing valid hash from silent authentication', () => {
     const action = new SilentSignInAction();
     const authResult = { accessToken: 'abc', idToken: 'def' };
     const completion = new SilentSignInSuccessAction(authResult);

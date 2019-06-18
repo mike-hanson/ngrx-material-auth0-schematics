@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 
 import { SignInComponent } from './sign-in.component';
-import { SignInCompleteAction } from '../auth.actions';
+import { SignInCompleteAction } from '../state/auth.actions';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -23,7 +23,7 @@ describe('SignInComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Should compile', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 

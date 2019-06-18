@@ -18,7 +18,7 @@ describe('auth.actions', () => {
   let action: Action;
   const payload: any = {};
 
-  it('Should define enum with correct set of actions', () => {
+  it('should define enum with correct set of actions', () => {
     expect(AuthActionTypes.SignIn).toBeDefined();
     expect(AuthActionTypes.SignInComplete).toBeDefined();
     expect(AuthActionTypes.SignInSuccess).toBeDefined();
@@ -35,11 +35,11 @@ describe('auth.actions', () => {
       action = new SignInAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignIn);
     });
   });
@@ -49,11 +49,11 @@ describe('auth.actions', () => {
       action = new SignInCompleteAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignInComplete);
     });
   });
@@ -63,15 +63,15 @@ describe('auth.actions', () => {
       action = new SignInSuccessAction(payload);
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignInSuccess);
     });
 
-    it('Should have payload', () => {
+    it('should have payload', () => {
       expect(action['payload']).toBe(payload);
     });
   });
@@ -81,15 +81,15 @@ describe('auth.actions', () => {
       action = new SignInFailureAction(payload);
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignInFailure);
     });
 
-    it('Should have payload', () => {
+    it('should have payload', () => {
       expect(action['payload']).toBe(payload);
     });
   });
@@ -99,11 +99,11 @@ describe('auth.actions', () => {
       action = new SignOutAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignOut);
     });
   });
@@ -113,11 +113,11 @@ describe('auth.actions', () => {
       action = new SignOutCompleteAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.SignOutComplete);
     });
   });
@@ -127,11 +127,11 @@ describe('auth.actions', () => {
       action = new RenewTokensAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.RenewTokens);
     });
   });
@@ -141,15 +141,15 @@ describe('auth.actions', () => {
       action = new RenewTokensSuccessAction(payload);
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.RenewTokensSuccess);
     });
 
-    it('Should have payload', () => {
+    it('should have payload', () => {
       expect(action['payload']).toBe(payload);
     });
   });
@@ -159,11 +159,11 @@ describe('auth.actions', () => {
       action = new RenewTokensFailureAction();
     });
 
-    it('Should be defined', () => {
+    it('should be defined', () => {
       expect(action).toBeDefined();
     });
 
-    it('Should have correct type', () => {
+    it('should have correct type', () => {
       expect(action.type).toEqual(AuthActionTypes.RenewTokensFailure);
     });
   });

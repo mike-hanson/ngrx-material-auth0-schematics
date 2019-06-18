@@ -1,10 +1,9 @@
 <mat-toolbar color='primary'>
+    <button mat-icon-button (click)="handleMenuClick($event)"><mat-icon>menu</mat-icon></button>
   <a mat-button routerLink='/home' title='Go to home page'>
     <mat-icon color='accent' class='icon-lg'>home</mat-icon>
     <span class='app-title'>{{appTitle}}</span>
   </a>
-  <a aria-label='home' mat-button routerLinkActive='active-accent' routerLink='/home' title='Home page'>Home</a>
-  <a aria-label='about' mat-button routerLinkActive='active-accent' routerLink='/about' title='About page'>About</a>
   <span class='toolbar-fill'></span>
   <app-auth-buttons></app-auth-buttons>
 </mat-toolbar>

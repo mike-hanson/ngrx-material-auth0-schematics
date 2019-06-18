@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { State, getIsAuthenticated, getFullName, getPicture } from '../auth.reducer';
-import { SignInAction, SignOutAction } from '../auth.actions';
+import { State } from '../state/auth.reducer';
+import { getIsAuthenticated, getFullName, getPicture } from '../state/auth.selectors';
+import { SignInAction, SignOutAction } from '../state/auth.actions';
 
 @Component({
   selector: 'app-auth-buttons',

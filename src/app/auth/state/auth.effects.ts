@@ -6,8 +6,8 @@ import { Observable, of as observableOf, EMPTY, of, empty } from 'rxjs';
 import { catchError, map, startWith, switchMap, tap, exhaustMap } from 'rxjs/operators';
 import { MatDialog, MatSnackBar } from '@angular/material';
 
-import { AuthService } from './services/auth.service';
-import { SignInFailureDialogComponent } from './sign-in-failure-dialog/sign-in-failure-dialog.component';
+import { AuthService } from '../services/auth.service';
+import { SignInFailureDialogComponent } from '../sign-in-failure-dialog/sign-in-failure-dialog.component';
 import { State } from './auth.reducer';
 import {
   SignInAction,
@@ -24,8 +24,8 @@ import {
   SilentSignInSuccessAction
 } from './auth.actions';
 import { Auth0ParseHashError } from 'auth0-js';
-import { RenewTokensFailureDialogComponent } from './renew-tokens-failure-dialog/renew-tokens-failure-dialog.component';
-import { environment } from '../../environments/environment';
+import { RenewTokensFailureDialogComponent } from '../renew-tokens-failure-dialog/renew-tokens-failure-dialog.component';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AuthEffects {

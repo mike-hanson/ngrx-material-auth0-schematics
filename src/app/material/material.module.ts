@@ -5,19 +5,23 @@ import {
   MatIconModule,
   MatCardModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 
-export const COMPONENTS = [
+export const MODULES = [
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
   MatCardModule,
   MatDialogModule,
-  MatSnackBarModule];
+  MatSnackBarModule,
+  MatSidenavModule,
+  MatListModule];
 
 @NgModule({
-  imports: COMPONENTS,
-  exports: COMPONENTS
+  imports: MODULES,
+  exports: MODULES
 })
 export class MaterialModule { }

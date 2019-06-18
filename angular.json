@@ -9,8 +9,11 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "sass"
+        "@ngrx/schematics:component": {
+          "styleext": "scss"
+        },
+        "@ngrx/schematics:module": {
+          "routing": true
         }
       },
       "architect": {

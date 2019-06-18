@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { State } from '../auth.reducer';
-import { SignInCompleteAction } from '../auth.actions';
+import { State } from '../state/auth.reducer';
+import { SignInCompleteAction } from '../state/auth.actions';
 
 @Component({
   selector: 'app-sign-in',

@@ -1,4 +1,4 @@
-import { OnInit, DebugElement } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { Title, By } from '@angular/platform-browser';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -42,7 +42,7 @@ describe('AppComponent', () => {
     titleService = TestBed.get(Title);
   }));
 
-  it('Should compile', () => {
+  it('should compile', () => {
     expect(app).toBeTruthy();
   });
 
@@ -54,15 +54,9 @@ describe('AppComponent', () => {
     expect(titleService.setTitle).toHaveBeenCalledWith(environment.appTitle);
   });
 
-  it('should include a toolbar', () => {
-    const childElement = debugElement.query(By.css('app-toolbar'));
+  it('should include a shell', () => {
+    const childElement = debugElement.query(By.css('app-shell'));
 
     expect(childElement).toBeTruthy();
-  });
-
-  it('should include a router outlet', () => {
-    const chileElement = debugElement.query(By.css('router-outlet'));
-
-    expect(chileElement).toBeTruthy();
   });
 });

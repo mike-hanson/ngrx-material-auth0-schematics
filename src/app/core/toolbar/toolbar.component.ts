@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -7,7 +7,16 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
+
+  @Output()
+  public menuToggled: EventEmitter<void> = new EventEmitter();
+
   public get appTitle() {
     return environment.appTitle;
+  }
+
+  public handleMenuClick($event): void {
+    $event.stopPropagation();
+    this.menuToggled.emit();
   }
 }

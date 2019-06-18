@@ -18,7 +18,7 @@ describe('AuthService', () => {
     service = TestBed.get(AuthService);
   });
 
-  it('Should compile', () => {
+  it('should compile', () => {
     expect(service).toBeTruthy();
   });
 
